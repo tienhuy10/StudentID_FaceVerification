@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Card OCR Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="taskbar">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="App Logo">
+        <h1>Student Card OCR</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Tải lên thẻ sinh viên</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Tải lên và xử lý</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if original_image %}
+        <h2>Hình ảnh nhập vào</h2>
+        <div class="image-section">
+            <img src="{{ url_for('static', filename='uploads/' + original_image.split('/')[-1]) }}" alt="Original Image">
+            <h2>Xử lý hình ảnh =></h2>
+            <img src="{{ url_for('static', filename='uploads/' + cropped_image.split('/')[-1]) }}" alt="Cropped Image">
+        </div>
+
+        <div class="info-section">
+            <h2>Thông tin sinh viên được trích xuất</h2>
+            <form action="{{ url_for('save') }}" method="post">
+                <ul>
+                    {% for key, value in student_info.items() %}
+                        <li>
+                            <strong>{{ key }}:</strong> {{ value }}
+                            <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="submit">Lưu thông tin</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

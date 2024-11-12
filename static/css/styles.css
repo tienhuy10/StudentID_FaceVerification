@@ -1,0 +1,132 @@
+/* Đặt font chữ và background tổng thể */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Taskbar dọc bên trái */
+.taskbar {
+    background-color: #007bff;
+    color: white;
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.taskbar img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.taskbar h1 {
+    font-size: 1.2em;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.taskbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 0;
+    display: block; /* Đặt mỗi link trên một dòng */
+    text-align: center;
+    width: 100%;
+}
+
+.taskbar a:hover {
+    background-color: #0056b3; /* Hiệu ứng khi di chuột */
+}
+
+/* Container chính */
+.container {
+    margin-left: 220px;  /* Để chừa khoảng trống cho taskbar bên trái */
+    width: calc(100% - 220px);
+    max-width: 1000px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+h2 {
+    color: #007bff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input[type="file"] {
+    padding: 5px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Ảnh */
+.image-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Khoảng cách giữa các ảnh */
+    margin-top: 20px; /* Thêm khoảng cách bên trên */
+}
+
+.image-section img {
+    max-width: 35%;  /* Đặt chiều rộng tối đa mỗi ảnh để chúng nằm vừa hàng */
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Thông tin sinh viên */
+.info-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.info-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-section li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.info-section li strong {
+    color: #007bff;
+}
