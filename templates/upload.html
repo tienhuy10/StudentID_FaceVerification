@@ -3,21 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Excel File</title>
+    <title>Upload Student List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Upload Excel File</h1>
-    
-    <!-- Form tải file Excel -->
-    <form action="{{ url_for('upload_excel') }}" method="post" enctype="multipart/form-data">
-        <label>Chọn file Excel danh sách sinh viên:</label>
-        <input type="file" name="file" required>
-        <button type="submit">Tải lên</button>
-    </form>
-    
-    <!-- Nút chia ca thi -->
-    <form action="{{ url_for('split_sessions') }}" method="post">
-        <button type="submit">Chia ca thi</button>
-    </form>
+    <div class="taskbar">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="App Logo">
+        <h1>Student Card OCR</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('upload') }}">Upload</a>
+            <a href="#">Contact</a>
+        </nav>
+    </div>
+
+    <div class="container upload-container">
+        <div class="upload-header">
+            <h2>Upload Excel File for Students</h2>
+            <p>Chọn tệp Excel chứa danh sách sinh viên và tải lên để thêm vào cơ sở dữ liệu.</p>
+        </div>
+        
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload-form">
+            <label for="student-list-file" class="file-label">Chọn file Excel</label>
+            <input type="file" id="student-list-file" name="file" required class="file-input">
+            <button type="submit" class="upload-button">Tải lên và thêm vào cơ sở dữ liệu</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-message">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
 </body>
 </html>
